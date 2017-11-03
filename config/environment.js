@@ -3,7 +3,7 @@
 
 module.exports = function(environment) {
   let ENV = {
-    modulePrefix: 'ipfs-explorer',
+    modulePrefix: 'ipfs-web-explorer',
     environment,
     rootURL: '/',
     locationType: 'auto',
