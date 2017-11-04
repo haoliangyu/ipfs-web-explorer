@@ -2,17 +2,13 @@ import EmberObject from '@ember/object';
 
 export default EmberObject.extend({
 
-  execute(node, hanlder) {
-    return node.start()
-      .then(() => hanlder(node))
-      .then((result) => {
-        node.stop();
-        return result;
-      })
-      .catch((err) => {
-        node.stop();
-         throw err;
-      });
+  hashFromPath(path) {
+    return path.split('/')[2];
+  },
+
+  hashFromUrl(url) {
+    let parsedUrl = new URL(url);
+    return parsedUrl.pathname.split('/')[2];
   }
 
 });

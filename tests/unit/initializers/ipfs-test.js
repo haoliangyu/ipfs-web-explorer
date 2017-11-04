@@ -1,7 +1,7 @@
 import Application from '@ember/application';
 import { run } from '@ember/runloop';
 
-import { initialize } from 'ipfs-explorer/initializers/ipfs';
+import { initialize } from 'ipfs-web-explorer/initializers/ipfs';
 import { module, test } from 'qunit';
 import destroyApp from '../../helpers/destroy-app';
 

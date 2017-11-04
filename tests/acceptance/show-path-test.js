@@ -1,5 +1,5 @@
 import { test } from 'qunit';
-import moduleForAcceptance from 'ipfs-explorer/tests/helpers/module-for-acceptance';
+import moduleForAcceptance from '../helpers/module-for-acceptance';
 
 moduleForAcceptance('Acceptance | show app');
 

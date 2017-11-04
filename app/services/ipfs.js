@@ -23,10 +23,22 @@ export default Service.extend({
   },
 
   getLinks(multihash) {
-    let node = this.get('node');
-    let ipfsUtil = this.get('ipfsUtil');
+    return this.runNode((node) => node.object.links(multihash));
+  },
 
-    return ipfsUtil.execute(node, (node) => node.object.links(multihash));
-  }
+  runNode(hanlder) {
+    let node = this.node;
+
+    return node.start()
+      .then(() => hanlder(node))
+      .then((result) => {
+        node.stop();
+        return result;
+      })
+      .catch((err) => {
+        node.stop();
+        throw err;
+      });
+  },
 
 });
