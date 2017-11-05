@@ -5,7 +5,6 @@ export default Component.extend({
   actions: {
     updateLinks(links) {
       this.set('objectLinks', links);
-      console.log(this.get('objectLinks'));
     }
   }
 });
