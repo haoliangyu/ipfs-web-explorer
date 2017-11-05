@@ -3,14 +3,18 @@ import IpfsUtil from '../utils/ipfs-util';
 import isIPFS from 'npm:is-ipfs';
 
 export default Component.extend({
+
+  /**
+   * Search text
+   * @type {String}
+   */
   text: '',
+
   init() {
     this._super(...arguments);
-
-    if (!this.get('ipfsUtil')) {
-      this.set('ipfsUtil', IpfsUtil.create());
-    }
+    this.set('ipfsUtil', IpfsUtil.create());
   },
+
   actions: {
     onInputFinish(text) {
       let ipfsUtil = this.get('ipfsUtil');
@@ -29,7 +33,14 @@ export default Component.extend({
 
       this.get('ipfs')
         .getLinks(hash)
-        .then((links) => this.get('onSearch')(links))
+        .then((links) => {
+          let result = {
+            hash,
+            result: links
+          };
+
+          this.get('afterSearch')(result)
+        })
         .catch((err) => console.error(err));
     }
   }

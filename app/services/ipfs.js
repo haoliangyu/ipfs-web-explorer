@@ -7,26 +7,36 @@ export default Service.extend({
   name: 'ipfs',
 
   init() {
-    if (!this.get('ipfsUtil')) {
-      this.set('ipfsUtil', IpfsUtil.create());
-    }
+    this.set('ipfsUtil', IpfsUtil.create());
 
-    if (!this.get('node')) {
-      let node = new IPFS({
-        repo: String(Math.random() + Date.now())
-      });
+    let node = new IPFS({
+      repo: String(Math.random() + Date.now()),
+      start: false
+    });
 
-      node.on('ready', () => {
-        console.log('IPFS node initialized');
-        this.set('node', node);
-      });
-    }
+    node.on('ready', () => {
+      this.set('node', node);
+      this.get('event').emit('ipfs:ready');
+    });
   },
 
   getLinks(multihash) {
-    let node = this.get('node');
+    return this.runNode((node) => node.object.links(multihash));
+  },
 
-    return node.object.links(multihash);
-  }
+  runNode(hanlder) {
+    let node = this.node;
+
+    return node.start()
+      .then(() => hanlder(node))
+      .then((result) => {
+        node.stop();
+        return result;
+      })
+      .catch((err) => {
+        node.stop();
+        throw err;
+      });
+  },
 
 });

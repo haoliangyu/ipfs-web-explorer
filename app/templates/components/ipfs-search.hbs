@@ -1,5 +1,10 @@
-{{input type="search"
-  placeholder="Enter an IPFS path or hash..."
-  value=text
-  enter="onInputFinish"
-}}
+<div class="mdl-textfield mdl-js-textfield">
+  {{input type="search"
+    placeholder="Enter an IPFS path or hash..."
+    class="mdl-textfield__input ipfs-search-box"
+    id="ipfs-search"
+    value=text
+    enter="onInputFinish"
+  }}
+  <label class="mdl-textfield__label" for="ipfs-search">Text...</label>
+</div>

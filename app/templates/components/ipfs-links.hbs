@@ -1,3 +1,18 @@
-{{#each links as |link|}}
-  <div>{{link.name}}</div>
-{{/each}}
+<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp ipfs-links">
+  <thead>
+    <tr>
+      <th class="mdl-data-table__cell--non-numeric">Name</th>
+      <th class="mdl-data-table__cell--non-numeric">Size</th>
+      <th class="mdl-data-table__cell--non-numeric">Multihash</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each displayLinks as |link|}}
+      <tr>
+        <td class="mdl-data-table__cell--non-numeric">{{link.name}}</td>
+        <td class="mdl-data-table__cell--non-numeric">{{link.size}}</td>
+        <td class="mdl-data-table__cell--non-numeric">{{link.multihash}}</td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
