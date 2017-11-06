@@ -3,7 +3,7 @@
     <div class="mdl-layout__header-row">
       <span class="mdl-layout-title">IPFS Web Explorer</span>
       <div class="header-item">
-        {{ ipfs-search afterSearch=(action "afterSearch") }}
+        <a class="github-button" href="https://github.com/haoliangyu/ipfs-web-explorer" data-size="large" data-show-count="true" aria-label="Star haoliangyu/ipfs-web-explorer on GitHub">Star</a>
       </div>
       <div class="mdl-layout-spacer"></div>
       <div>
@@ -19,9 +19,13 @@
     <div class="container mdl-grid">
       <div class="mdl-cell mdl-cell--1-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
       <div class="mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--10-col">
-        {{#if showSearchResult}}
-          {{ ipfs-links links=objectLinks }}
-        {{/if}}
+        <img class="landing-logo" src="/images/ipfs-logo-256-ice.png">
+        <div class="text-center">
+          <h1>Open IPFS</h1>
+        </div>
+        <div class="landing-search">
+          {{ ipfs-search }}
+        </div>
       </div>
     </div>
     <footer class="footer mdl-mini-footer">

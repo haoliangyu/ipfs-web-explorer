@@ -10,12 +10,34 @@ export default Component.extend({
    */
   text: '',
 
+  /**
+   * Search error
+   * @type {String}
+   */
+  searchError: '',
+
+  /**
+   * Inidicate whet
+   * @type {Boolean}
+   */
+  searchBoxFocused: false,
+
   init() {
     this._super(...arguments);
     this.set('ipfsUtil', IpfsUtil.create());
   },
 
   actions: {
+    onFocus() {
+      this.set('searchBoxFocused', true);
+      this.set('searchError', null);
+    },
+
+    onBlur() {
+      this.set('searchBoxFocused', false);
+      this.set('searchError', null);
+    },
+
     onInputFinish(text) {
       let ipfsUtil = this.get('ipfsUtil');
       let hash;
@@ -27,21 +49,24 @@ export default Component.extend({
       } else if (isIPFS.ipfsUrl(text)) {
         hash = ipfsUtil.hashFromUrl(text);
       } else {
-        console.log('Invalid IPFS hash/path/url: ', text);
+        this.set('searchBoxFocused', false);
+        this.set('searchError', 'This is not a recognizable IPFS url, path, or multihash.');
         return;
       }
 
-      this.get('ipfs')
-        .getLinks(hash)
-        .then((links) => {
-          let result = {
-            hash,
-            result: links
-          };
+      this.get('event').emit('ipfs:search', hash);
 
-          this.get('afterSearch')(result)
-        })
-        .catch((err) => console.error(err));
+      // this.get('ipfs')
+      //   .getLinks(hash)
+      //   .then((links) => {
+      //     let result = {
+      //       hash,
+      //       result: links
+      //     };
+      //
+      //     this.get('afterSearch')(result)
+      //   })
+      //   .catch((err) => console.error(err));
     }
   }
 });
