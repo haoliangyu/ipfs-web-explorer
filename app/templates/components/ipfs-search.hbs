@@ -7,6 +7,7 @@
     enter="onInputFinish"
     focus-in="onFocus"
     focus-out="onBlur"
+    disabled=ipfsInitializing
   }}
 </div>
 {{#if searchBoxFocused}}
@@ -17,5 +18,10 @@
 {{#if searchError}}
   <div>
     <span class="text-error">{{ searchError }}</span>
+  </div>
+{{/if}}
+{{#if ipfsInitializing}}
+  <div>
+    <span class="text-hint">Initializing IPFS node...</span>
   </div>
 {{/if}}

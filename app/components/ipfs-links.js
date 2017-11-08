@@ -20,8 +20,6 @@ export default Component.extend({
       }
     });
 
-    console.log(display);
-
     return display;
   })
 });

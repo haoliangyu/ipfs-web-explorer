@@ -22,9 +22,22 @@ export default Component.extend({
    */
   searchBoxFocused: false,
 
+  /**
+   * Indicates whether the IPFS node is being initialized
+   * @type {Boolean}
+   */
+  ipfsInitializing: true,
+
   init() {
+    let that = this;
+
     this._super(...arguments);
     this.set('ipfsUtil', IpfsUtil.create());
+
+    this.get('event')
+      .once('ipfs:ready', () => {
+        that.set('ipfsInitializing', false);
+      });
   },
 
   actions: {

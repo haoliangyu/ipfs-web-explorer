@@ -7,6 +7,8 @@ const Router = EmberRouter.extend({
 });
 
 Router.map(function() {
+  this.route('search');
+  this.route('ipfs');
 });
 
 export default Router;
