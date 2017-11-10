@@ -1,5 +1,6 @@
 export function initialize(application) {
   application.inject('component', 'event', 'service:event');
+  application.inject('controller', 'event', 'service:event');
   application.inject('service:ipfs', 'event', 'service:event');
 }
 

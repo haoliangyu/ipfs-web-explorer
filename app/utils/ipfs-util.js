@@ -2,11 +2,11 @@ import EmberObject from '@ember/object';
 
 export default EmberObject.extend({
 
-  hashFromPath(path) {
+  multihashFromPath(path) {
     return path.split('/')[2];
   },
 
-  hashFromUrl(url) {
+  multihashFromUrl(url) {
     let parsedUrl = new URL(url);
     return parsedUrl.pathname.split('/')[2];
   }

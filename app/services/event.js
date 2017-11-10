@@ -20,7 +20,7 @@ export default Service.extend({
     this.get('EE').removeListener(event, handler, context);
   },
 
-  emit(event) {
-    this.get('EE').emit(event);
+  emit(event, data) {
+    this.get('EE').emit(event, data);
   }
 });

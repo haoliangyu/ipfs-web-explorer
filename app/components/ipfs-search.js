@@ -53,33 +53,21 @@ export default Component.extend({
 
     onInputFinish(text) {
       let ipfsUtil = this.get('ipfsUtil');
-      let hash;
+      let multihash;
 
       if (isIPFS.multihash(text)) {
-        hash = text;
+        multihash = text;
       } else if (isIPFS.ipfsPath(text)) {
-        hash = ipfsUtil.hashFromPath(text);
+        multihash = ipfsUtil.multihashFromPath(text);
       } else if (isIPFS.ipfsUrl(text)) {
-        hash = ipfsUtil.hashFromUrl(text);
+        multihash = ipfsUtil.multihashFromUrl(text);
       } else {
         this.set('searchBoxFocused', false);
         this.set('searchError', 'This is not a recognizable IPFS url, path, or multihash.');
         return;
       }
 
-      this.get('event').emit('ipfs:search', hash);
-
-      // this.get('ipfs')
-      //   .getLinks(hash)
-      //   .then((links) => {
-      //     let result = {
-      //       hash,
-      //       result: links
-      //     };
-      //
-      //     this.get('afterSearch')(result)
-      //   })
-      //   .catch((err) => console.error(err));
+      this.get('event').emit('ipfs:search', multihash);
     }
   }
 });
