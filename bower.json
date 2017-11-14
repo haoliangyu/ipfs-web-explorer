@@ -1,0 +1,6 @@
+{
+  "name": "ipfs-web-explorer",
+  "dependencies": {
+    "material-design-lite": "~1.0.4"
+  }
+}

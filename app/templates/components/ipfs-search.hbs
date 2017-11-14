@@ -1,27 +1,19 @@
-<div class="mdl-textfield mdl-js-textfield ipfs-search-box">
-  {{input type="search"
-    placeholder="enter an IPFS url, path, or multihash..."
-    class="mdl-textfield__input"
-    id="ipfs-search"
+<div class="ipfs-search-box">
+  {{mdl-textfield
+    type="search"
+    label="enter an IPFS url, path, or multihash..."
     value=text
-    enter="onInputFinish"
-    focus-in="onFocus"
-    focus-out="onBlur"
-    disabled=ipfsInitializing
   }}
 </div>
-{{#if searchBoxFocused}}
-  <div>
-    <span class="text-hint">prese Enter to explore</span>
-  </div>
-{{/if}}
+
 {{#if searchError}}
-  <div>
-    <span class="text-error">{{ searchError }}</span>
-  </div>
+  <p class="text-error">{{ searchError }}</p>
 {{/if}}
+
 {{#if ipfsInitializing}}
-  <div>
-    <span class="text-hint">Initializing IPFS node...</span>
-  </div>
+  <p class="text-hint">Initializing IPFS node...</p>
 {{/if}}
+
+<div>
+  {{mdl-button isRaised=true text="Explore" action="openHash" disabled=ipfsInitializing}}
+</div>

@@ -17,12 +17,6 @@ export default Component.extend({
   searchError: '',
 
   /**
-   * Inidicate whet
-   * @type {Boolean}
-   */
-  searchBoxFocused: false,
-
-  /**
    * Indicates whether the IPFS node is being initialized
    * @type {Boolean}
    */
@@ -35,25 +29,18 @@ export default Component.extend({
     this.set('ipfsUtil', IpfsUtil.create());
 
     this.get('event')
-      .once('ipfs:ready', () => {
+      .once('ipfs:initialized', () => {
         that.set('ipfsInitializing', false);
       });
   },
 
   actions: {
-    onFocus() {
-      this.set('searchBoxFocused', true);
-      this.set('searchError', null);
-    },
-
-    onBlur() {
-      this.set('searchBoxFocused', false);
-      this.set('searchError', null);
-    },
-
-    onInputFinish(text) {
+    openHash() {
       let ipfsUtil = this.get('ipfsUtil');
+      let text = this.get('text');
       let multihash;
+
+      this.set('searchError', '');
 
       if (isIPFS.multihash(text)) {
         multihash = text;
@@ -62,7 +49,6 @@ export default Component.extend({
       } else if (isIPFS.ipfsUrl(text)) {
         multihash = ipfsUtil.multihashFromUrl(text);
       } else {
-        this.set('searchBoxFocused', false);
         this.set('searchError', 'This is not a recognizable IPFS url, path, or multihash.');
         return;
       }

@@ -6,8 +6,7 @@ export default Controller.extend({
 
     this.get('event')
       .on('ipfs:search', (multihash) => {
-        console.log(multihash);
         that.transitionToRoute('ipfs', multihash);
       });
-  },
+  }
 });

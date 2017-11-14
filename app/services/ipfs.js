@@ -8,6 +8,7 @@ export default Service.extend({
 
   init() {
     this.set('ipfsUtil', IpfsUtil.create());
+    this.set('initialized', false);
 
     let node = new IPFS({
       repo: String(Math.random() + Date.now()),
@@ -16,7 +17,8 @@ export default Service.extend({
 
     node.on('ready', () => {
       this.set('node', node);
-      this.get('event').emit('ipfs:ready');
+      this.set('initialized', true);
+      this.get('event').emit('ipfs:initialized');
     });
   },
 

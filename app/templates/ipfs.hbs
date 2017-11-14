@@ -1,1 +1,21 @@
-{{ ipfs-links links=model.links }}
+{{#if (eq status "success")}}
+  {{ ipfs-links links=links }}
+{{/if}}
+
+{{#if (eq status "error")}}
+  <div>
+    <h3>
+      It seems an error has occurred:
+    </h3>
+    <p>{{ mode.message }}</p>
+  </div>
+{{/if}}
+
+{{#if (eq status "initializing")}}
+  <div class="explorer-status">
+    <h4 class="text-center">
+      Initializing IPFS...
+    </h4>
+    {{ mdl-progress }}
+  </div>
+{{/if}}

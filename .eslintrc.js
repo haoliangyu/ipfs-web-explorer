@@ -4,6 +4,9 @@ module.exports = {
     ecmaVersion: 2017,
     sourceType: 'module'
   },
+  globals: {
+    Promise: true
+  },
   extends: 'eslint:recommended',
   env: {
     browser: true
