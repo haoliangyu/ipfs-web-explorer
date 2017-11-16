@@ -1,0 +1,14 @@
+<div>
+
+  {{#each pathnames as |name index|}}
+    <div class="float-left">
+      <span class="float-left">
+        {{mdl-icon icon='keyboard_arrow_right'}}
+      </span>
+      <div class="float-left">
+        {{mdl-button text=name}}
+      </div>
+    </div>
+  {{/each}}
+
+</div>

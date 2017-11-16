@@ -5,7 +5,8 @@ module.exports = {
     sourceType: 'module'
   },
   globals: {
-    Promise: true
+    Promise: true,
+    Ipfs: true
   },
   extends: 'eslint:recommended',
   env: {

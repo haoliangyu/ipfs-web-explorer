@@ -4,6 +4,8 @@ export default Controller.extend({
 
   links: [],
 
+  pathnames: [],
+
   status: 'success',
 
   init() {
@@ -23,10 +25,12 @@ export default Controller.extend({
             .then((links) => {
               this.set('status', 'success');
               this.set('links', links);
+              this.set('pathnames', [multihash]);
             });
         });
     } else if (model.status === 'success') {
       this.set('links', model.links);
+      this.set('pathnames', [multihash]);
     }
   }.observes('model')
 });
